@@ -91,6 +91,19 @@ All assertions are **objectively verifiable** (file existence, section headers, 
 | without_skill | 6.7% | 2/30 |
 | **Delta** | **+90.0 pp** | +27 assertions |
 
+**Timing and token usage** (from task completion notifications — captured at runtime):
+
+| Eval | with_skill tokens | with_skill time | without_skill tokens | without_skill time |
+|------|------------------|-----------------|---------------------|-------------------|
+| 1 todo-cli | 17,802 | 99.7s | 13,587 | 76.2s |
+| 2 research | 22,150 | 128.7s | 13,610 | 127.3s |
+| 3 debug | 17,506 | 93.4s | 11,525 | 66.5s |
+| 4 django | 24,049 | 147.9s | 12,351 | 141.4s |
+| 5 cicd | 18,122 | 105.0s | 8,424 | 76.7s |
+| **Average** | **19,926** | **115s** | **11,899** | **98s** |
+
+The skill uses ~68% more tokens and ~17% more time on average. The extra cost is the structured output: creating 3 files instead of 1-2, following phase/status discipline, populating decisions and error tables. This is the intended tradeoff — the skill trades speed for structure.
+
 #### The One Failure (Eval 4, Assertion 6)
 
 Assertion: `**Status:** pending on at least one future phase`
